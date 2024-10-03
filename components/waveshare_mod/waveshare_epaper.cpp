@@ -213,7 +213,7 @@ void HOT WaveshareEPaperBWR::draw_absolute_pixel_internal(int x, int y, Color co
   }
 
   // draw red pixels only, if the color contains red only
-  if (((color.red > 0) && (color.green == 0) && (color.blue == 0))) {
+  if (x%2==0){//(((color.red > 0) && (color.green == 0) && (color.blue == 0))) {
     this->buffer_[pos + buf_half_len] |= (0x80 >> subpos);
   } else {
     this->buffer_[pos + buf_half_len] &= ~(0x80 >> subpos);
