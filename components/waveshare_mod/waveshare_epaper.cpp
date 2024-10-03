@@ -1943,8 +1943,9 @@ void HOT WaveshareEPaper2P13InBV3::display() {
   // COMMAND DATA START TRANSMISSION 2 (RED data)
   this->command(0x13);
   this->start_data_();
-  for (size_t i = 0; i < this->get_buffer_length_(); i++)
-    this->write_byte(0x00);
+  this->write_array(this->buffer_, this->get_buffer_length_());
+  //for (size_t i = 0; i < this->get_buffer_length_(); i++)
+  //  this->write_byte(0x00);
   this->end_data_();
   delay(2);
 
