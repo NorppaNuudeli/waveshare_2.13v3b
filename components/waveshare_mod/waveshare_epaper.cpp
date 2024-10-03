@@ -1917,6 +1917,8 @@ void WaveshareEPaper4P2InBV2::dump_config() {
 // ========================================================
 void WaveshareEPaper2P13InBV3::initialize() {
   // these exact timings are required for a proper reset/init
+  this->reset_pin_->digital_write(true);
+  delay(200);  // NOLINT
   this->reset_pin_->digital_write(false);
   delay(2);
   this->reset_pin_->digital_write(true);
@@ -1942,17 +1944,18 @@ void HOT WaveshareEPaper2P13InBV3::display() {
   this->command(0x13);
   this->start_data_();
   for (size_t i = 0; i < this->get_buffer_length_(); i++)
-    this->write_byte(0xFF);
+    this->write_byte(0x00);
   this->end_data_();
   delay(2);
 
   // COMMAND DISPLAY REFRESH
   this->command(0x12);
+  delay(100);  // NOLINT
   this->wait_until_idle_();
 
   // COMMAND POWER OFF
   // NOTE: power off < deep sleep
-  this->command(0x02);
+  //this->command(0x02);
 }
 int WaveshareEPaper2P13InBV3::get_width_internal() { return 104; }
 int WaveshareEPaper2P13InBV3::get_height_internal() { return 212; }
