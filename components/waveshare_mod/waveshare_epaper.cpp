@@ -1873,7 +1873,6 @@ void WaveshareEPaper4P2InBV2::initialize() {
   // COMMAND PANEL SETTING
   this->command(0x00);
   this->data(0x0f);  // LUT from OTP
-  
 }
 
 void HOT WaveshareEPaper4P2InBV2::display() {
