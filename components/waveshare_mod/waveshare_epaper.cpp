@@ -1836,7 +1836,7 @@ void HOT WaveshareEPaper4P2In::display() {
   // COMMAND DATA START TRANSMISSION 2
   this->command(0x13);
   delay(2);
-  this->start_data_(;
+  this->start_data_();
   this->write_array(this->buffer_, this->get_buffer_length_());
   this->end_data_();
   // COMMAND DISPLAY REFRESH
