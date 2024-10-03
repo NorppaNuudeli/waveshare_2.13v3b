@@ -206,14 +206,15 @@ void HOT WaveshareEPaperBWR::draw_absolute_pixel_internal(int x, int y, Color co
   const uint32_t pos = (x + y * this->get_width_internal()) / 8u;
   const uint8_t subpos = x & 0x07;
   // flip logic and flip it again!
-  if (!color.is_on()) {
+  //if (!color.is_on()) {
+  if (color.red == 0) {
     this->buffer_[pos] |= 0x80 >> subpos;
   } else {
     this->buffer_[pos] &= ~(0x80 >> subpos);
   }
 
   // draw red pixels only, if the color contains red only
-  if (x%2==0){//(((color.red > 0) && (color.green == 0) && (color.blue == 0))) {
+  if (((color.red > 0) && (color.green == 0) && (color.blue == 0))) {
     this->buffer_[pos + buf_half_len] |= (0x80 >> subpos);
   } else {
     this->buffer_[pos + buf_half_len] &= ~(0x80 >> subpos);
@@ -1954,8 +1955,6 @@ void HOT WaveshareEPaper2P13InBV3::display() {
   this->command(0x13);
   this->start_data_();
   this->write_array((this->buffer_+color_buffer_length), color_buffer_length);
-  //for (size_t i = 0; i < this->get_buffer_length_(); i++)
-  //  this->write_byte(0x00);
   this->end_data_();
   delay(2);
 
