@@ -25,6 +25,12 @@ class WaveshareEPaperBase : public display::DisplayBuffer,
   virtual void initialize() = 0;
   virtual void deep_sleep() = 0;
 
+  // From atomicmike-version, needed ??
+  //virtual int get_color_internal() { return 1; }
+  //virtual uint8_t get_color_list_internal(uint8_t indexColor) {
+  //  return display::ColorUtil::color_to_332(display::COLOR_ON);
+  //}
+
   void update() override;
 
   void setup() override {
@@ -470,7 +476,7 @@ class WaveshareEPaper4P2InBV2 : public WaveshareEPaper {
 };
 
 
-class WaveshareEPaper2P13InBV3 : public WaveshareEPaper {
+class WaveshareEPaper2P13InBV3 : public WaveshareEPaperBWR {
  public:
   void initialize() override;
 
