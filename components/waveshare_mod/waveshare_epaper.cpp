@@ -5,7 +5,7 @@
 #include <cinttypes>
 
 namespace esphome {
-namespace waveshare_epaper {
+namespace waveshare_mod {
 
 static const char *const TAG = "waveshare_epaper";
 

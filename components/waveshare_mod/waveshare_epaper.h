@@ -5,7 +5,7 @@
 #include "esphome/components/display/display_buffer.h"
 
 namespace esphome {
-namespace waveshare_epaper {
+namespace waveshare_mod {
 
 class WaveshareEPaperBase : public display::DisplayBuffer,
                             public spi::SPIDevice<spi::BIT_ORDER_MSB_FIRST, spi::CLOCK_POLARITY_LOW,

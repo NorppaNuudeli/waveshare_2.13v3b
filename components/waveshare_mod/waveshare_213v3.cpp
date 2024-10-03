@@ -3,7 +3,7 @@
 #include "esphome/core/application.h"
 
 namespace esphome {
-namespace waveshare_epaper {
+namespace waveshare_mod {
 
 static const char *const TAG = "waveshare_2.13v3";
 
