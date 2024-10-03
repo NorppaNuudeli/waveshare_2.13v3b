@@ -1873,6 +1873,16 @@ void WaveshareEPaper4P2InBV2::initialize() {
   // COMMAND PANEL SETTING
   this->command(0x00);
   this->data(0x0f);  // LUT from OTP
+
+  // Added in mod:
+  this->data(0x89);  // Temperature sensor, boost, and other related timing settings
+  this->command(0x61); // Resolution setting
+  this->data(0x68);
+  this->data(0x00);
+  this->data(0xD4);
+  this->data(0x50);  // Vcom and data interval setting
+  this->command(0x77); // WBRmode
+  
 }
 
 void HOT WaveshareEPaper4P2InBV2::display() {
