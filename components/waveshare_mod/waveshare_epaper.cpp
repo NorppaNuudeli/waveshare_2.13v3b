@@ -205,9 +205,8 @@ void HOT WaveshareEPaperBWR::draw_absolute_pixel_internal(int x, int y, Color co
 
   const uint32_t pos = (x + y * this->get_width_internal()) / 8u;
   const uint8_t subpos = x & 0x07;
-  // flip logic and flip it again!
-  //if (!color.is_on()) {
-  if (color.red == 0) {
+  // draw black pixels, if the color is black
+  if (((color.red == 0) && (color.green == 0) && (color.blue == 0))) {
     this->buffer_[pos] |= 0x80 >> subpos;
   } else {
     this->buffer_[pos] &= ~(0x80 >> subpos);
@@ -1965,7 +1964,7 @@ void HOT WaveshareEPaper2P13InBV3::display() {
 
   // COMMAND POWER OFF
   // NOTE: power off < deep sleep
-  //this->command(0x02);
+  this->command(0x02);
 }
 int WaveshareEPaper2P13InBV3::get_width_internal() { return 104; }
 int WaveshareEPaper2P13InBV3::get_height_internal() { return 212; }
