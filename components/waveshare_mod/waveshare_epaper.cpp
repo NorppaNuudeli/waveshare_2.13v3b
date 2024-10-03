@@ -1836,7 +1836,7 @@ void HOT WaveshareEPaper4P2In::display() {
   // COMMAND DATA START TRANSMISSION 2
   this->command(0x13);
   delay(2);
-  this->start_data_();
+  this->start_data_(;
   this->write_array(this->buffer_, this->get_buffer_length_());
   this->end_data_();
   // COMMAND DISPLAY REFRESH
@@ -1873,15 +1873,6 @@ void WaveshareEPaper4P2InBV2::initialize() {
   // COMMAND PANEL SETTING
   this->command(0x00);
   this->data(0x0f);  // LUT from OTP
-
-  // Added in mod:
-  this->data(0x89);  // Temperature sensor, boost, and other related timing settings
-  this->command(0x61); // Resolution setting
-  this->data(0x68);
-  this->data(0x00);
-  this->data(0xD4);
-  this->data(0x50);  // Vcom and data interval setting
-  this->command(0x77); // WBRmode
   
 }
 
@@ -1941,6 +1932,15 @@ void WaveshareEPaper2P13InBV3::initialize() {
   // COMMAND PANEL SETTING
   this->command(0x00);
   this->data(0x0f);  // LUT from OTP
+
+  // Added in mod:
+  this->data(0x89);  // Temperature sensor, boost, and other related timing settings
+  this->command(0x61); // Resolution setting
+  this->data(0x68);
+  this->data(0x00);
+  this->data(0xD4);
+  this->data(0x50);  // Vcom and data interval setting
+  this->command(0x77); // WBRmode
 }
 
 void HOT WaveshareEPaper2P13InBV3::display() {
