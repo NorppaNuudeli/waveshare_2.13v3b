@@ -16,7 +16,7 @@ from esphome.const import (
 
 DEPENDENCIES = ["spi"]
 
-waveshare_epaper_ns = cg.esphome_ns.namespace("waveshare_epaper")
+waveshare_epaper_ns = cg.esphome_ns.namespace("waveshare_mod")
 WaveshareEPaperBase = waveshare_epaper_ns.class_(
     "WaveshareEPaperBase", cg.PollingComponent, spi.SPIDevice, display.DisplayBuffer
 )
