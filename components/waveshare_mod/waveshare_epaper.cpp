@@ -201,7 +201,7 @@ void HOT WaveshareEPaperBWR::draw_absolute_pixel_internal(int x, int y, Color co
   if (x >= this->get_width_internal() || y >= this->get_height_internal() || x < 0 || y < 0)
     return;
 
-  const uint32_t buf_half_len = this->get_buffer_length_() / 4u;
+  const uint32_t buf_half_len = this->get_buffer_length_() / 2u;
 
   const uint32_t pos = (x + y * this->get_width_internal()) / 8u;
   const uint8_t subpos = x & 0x07;
@@ -1943,16 +1943,17 @@ void WaveshareEPaper2P13InBV3::initialize() {
 }
 
 void HOT WaveshareEPaper2P13InBV3::display() {
+  const int color_buffer_length = this->get_buffer_length_()/2;
   // COMMAND DATA START TRANSMISSION 1 (B/W data)
   this->command(0x10);
   this->start_data_();
-  this->write_array(this->buffer_, this->get_buffer_length_());
+  this->write_array(this->buffer_, color_buffer_length);
   this->end_data_();
 
   // COMMAND DATA START TRANSMISSION 2 (RED data)
   this->command(0x13);
   this->start_data_();
-  this->write_array(this->buffer_, this->get_buffer_length_());
+  this->write_array((this->buffer_+color_buffer_length), color_buffer_length);
   //for (size_t i = 0; i < this->get_buffer_length_(); i++)
   //  this->write_byte(0x00);
   this->end_data_();
