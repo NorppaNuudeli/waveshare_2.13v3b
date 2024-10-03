@@ -211,7 +211,7 @@ void HOT WaveshareEPaperBWR::draw_absolute_pixel_internal(int x, int y, Color co
   //} else {
   //  this->buffer_[pos] &= ~(0x80 >> subpos);
   //}
-  this->buffer_[pos] |= (0x80 >> subpos);
+  this->buffer_[pos] &= ~(0x80 >> subpos);
 
   // draw red pixels only, if the color contains red only
   if (((color.red > 0) && (color.green == 0) && (color.blue == 0))) {
@@ -1953,7 +1953,7 @@ void HOT WaveshareEPaper2P13InBV3::display() {
   // COMMAND DATA START TRANSMISSION 2 (RED data)
   this->command(0x13);
   this->start_data_();
-  this->write_array(this->buffer_, this->get_buffer_length_()/2u);
+  this->write_array(this->buffer_, this->get_buffer_length_());
   //for (size_t i = 0; i < this->get_buffer_length_(); i++)
   //  this->write_byte(0x00);
   this->end_data_();
